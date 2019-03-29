@@ -3,7 +3,7 @@ This extension provides the [agGrid](https://www.ag-grid.com/) integration for t
 
 ### Requirements
 
-The minimum requirement by this project template that your Web server supports PHP 7.1.
+The minimum requirement by yii2-widget-ag-grid that your Web server supports PHP 7.1.
 
 ### Install via Composer
 
@@ -17,15 +17,14 @@ $ php composer.phar require schmasterz-v/yii2-widget-ag-grid "master@dev"
 ```
 
 ### Usage
-------------
 
 ```php
 <?= \schmasterz\agGrid\AgGridWidget::widget(['options' => ['style' => 'height: 600px;width:500px;']]);?>
 ```
-You can also use agGrid in the JavaScript layer of your application. To achieve this, you need to include DataTables as a dependency of your Asset file
+You can also use agGrid in the JavaScript layer of your application. To achieve this, you need to include agGrid as a dependency of your Asset file
 ```php
 public $depends = [
-'schmasterz\agGrid\AgGridAsset',
+    'schmasterz\agGrid\AgGridAsset',
 ];
 ```
 or add it to your view file
