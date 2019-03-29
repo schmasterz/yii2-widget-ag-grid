@@ -4,6 +4,7 @@ nbproject
 .buildpath
 .project
 .settings
+.git
 Thumbs.db
 /vendor
 composer.phar
@@ -19,3 +20,4 @@ phpunit.xml
 package.tar
 /packages.json
 /.phpunit
+packages
