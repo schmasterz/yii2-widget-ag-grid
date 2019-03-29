@@ -1,0 +1,35 @@
+{
+  "name": "schmasterz/yii2-widget-ag-grid",
+  "description": "Yii2 wrapper for ag-grid.",
+  "keywords": [
+    "yii2", "javascript", "ag-grid"
+  ],
+  "minimum-stability": "dev",
+  "repositories": [
+    { "type": "composer", "url": "https://asset-packagist.org" }
+
+  ],
+  "type": "yii2-extension",
+  "license": "MIT",
+  "support": {
+    "issues": "https://github.com/schmasterz/yii2-widget-ag-grid/issues",
+    "source": "https://github.com/schmasterz/yii2-widget-ag-grid"
+  },
+  "authors": [
+    {
+      "name": "Milen Hristov",
+      "email": "milen@schz.dev",
+      "homepage": "https://schz.dev/"
+    }
+  ],
+  "require": {
+    "php": "^7.1",
+    "yiisoft/yii2": "~2.0.14",
+    "bower-asset/ag-grid": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "schmasterz\\agGrid\\": "src/"
+    }
+  }
+}
