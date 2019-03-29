@@ -19,16 +19,17 @@ class AgGridWidget extends Widget
      */
     public $container = 'div';
 
-    public $options = [];
-    /**
-     * @var array default HTML attributes for the container tag of the grid view.
-     */
-    protected $defaultOptions = ['class' => 'ag-theme-bootstrap'];
     /**
      * @var array the HTML attributes for the container tag of the grid view.
      * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
      */
 
+    public $options = [];
+    /**
+     * @var array default HTML attributes for the container tag of the grid view.
+     */
+
+    protected $defaultOptions = ['class' => 'ag-theme-bootstrap'];
 
 
     /**
@@ -45,7 +46,7 @@ class AgGridWidget extends Widget
         $this->options = array_merge($this->defaultOptions, $this->options);
 
         AgGridAsset::register($this->getView());
-        $this->registerJs();
+        $this->addJs();
     }
 
     public function run()
@@ -58,7 +59,7 @@ class AgGridWidget extends Widget
 
     protected function registerJs()
     {
-        $this->getView()->registerJs(' var columnDefs = [
+        $this->getView()->addJs(' var columnDefs = [
       {headerName: "Make", field: "make"},
       {headerName: "Model", field: "model"},
       {headerName: "Price", field: "price"}
