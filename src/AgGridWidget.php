@@ -1,16 +1,13 @@
 <?php
 namespace schmasterz\agGrid;
 
+use yii\base\InvalidConfigException;
 use yii\base\Widget;
 use yii\helpers\Html;
+use yii\helpers\Json;
 
 class AgGridWidget extends Widget
 {
-    public $columns = [];
-
-    public $data;
-
-    public $fetch;
 
 
     /**
@@ -29,21 +26,31 @@ class AgGridWidget extends Widget
      * @var array default HTML attributes for the container tag of the grid view.
      */
 
-    protected $defaultOptions = ['class' => 'ag-theme-bootstrap'];
+    protected $defaultOptions = ['class' => 'ag-theme-blue'];
 
 
     /**
      * @var array
      * Additional javascript options
      */
-    public $pluginOptions = [];
+    public $gridOptions = [];
+
+    /**
+     * @var array
+     * Default additional javascript options
+     */
+    protected $defaultGridOptions = ['rowData' => []];
 
     public function init()
     {
         if (empty($this->options['id'])) {
             $this->options['id'] = $this->getId();
         }
+        if(empty($this->gridOptions['columnDefs'])) {
+            throw new InvalidConfigException('You must define your columns');
+        }
         $this->options = array_merge($this->defaultOptions, $this->options);
+        $this->gridOptions = array_merge($this->defaultGridOptions, $this->gridOptions);
 
         AgGridAsset::register($this->getView());
         $this->addJs();
@@ -57,31 +64,15 @@ class AgGridWidget extends Widget
 
     }
 
-    protected function registerJs()
+    protected function addJs()
     {
-        $this->getView()->addJs(' var columnDefs = [
-      {headerName: "Make", field: "make"},
-      {headerName: "Model", field: "model"},
-      {headerName: "Price", field: "price"}
-    ];
-    
-    // specify the data
-    var rowData = [
-      {make: "Toyota", model: "Celica", price: 35000},
-      {make: "Ford", model: "Mondeo", price: 32000},
-      {make: "Porsche", model: "Boxter", price: 72000}
-    ];
-    
-    // let the grid know which columns and what data to use
-    var gridOptions = {
-      columnDefs: columnDefs,
-      rowData: rowData
-    };
+        $js = 'var columnDefs = '.Json::encode($this->gridOptions['columnDefs']).';';
+        $js .= 'var rowData ='.Json::encode($this->gridOptions['rowData']).';';
+        $js .= 'var gridOptions = {columnDefs: columnDefs,rowData: rowData};';
+        $js.= 'var eGridDiv = document.querySelector("#'.$this->options['id'].'");';
 
-  // lookup the container we want the Grid to use
-  var eGridDiv = document.querySelector(\'#'.$this->options['id'].'\');
+        $js .= 'new agGrid.Grid(eGridDiv, gridOptions);';
+        $this->getView()->registerJs($js);
 
-  // create the grid passing in the div to use together with the columns & data we want to use
-  new agGrid.Grid(eGridDiv, gridOptions);');
     }
 }

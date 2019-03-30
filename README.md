@@ -19,7 +19,21 @@ $ php composer.phar require schmasterz-v/yii2-widget-ag-grid "master@dev"
 ### Usage
 
 ```php
-<?= \schmasterz\agGrid\AgGridWidget::widget(['options' => ['style' => 'height: 600px;width:500px;']]);?>
+<?= \schmasterz\agGrid\AgGridWidget::widget([
+        'id' => 'ag-grid',
+        'options' => [
+            'style' => 'height: 600px;width:500px;'
+        ],
+        'gridOptions' => [
+            'columnDefs' => [
+                ['headerName' => 'Make', 'field' => 'make', 'sortable' => true],
+                ['headerName' => 'Model', 'field' => 'model', 'sortable' => true],
+                ['headerName' => 'Price', 'field' => 'price', 'sortable' => true],
+            ],
+            
+        ]
+     ]);
+?>
 ```
 You can also use agGrid in the JavaScript layer of your application. To achieve this, you need to include agGrid as a dependency of your Asset file
 ```php
