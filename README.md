@@ -43,7 +43,7 @@ public $depends = [
 ```
 or add it to your view file
 ```php
-schmasterz\agGrid\AgGridAsset::register($this),
+schmasterz\agGrid\AgGridAsset::register($this);
 ```
 
 
