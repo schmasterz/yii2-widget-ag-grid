@@ -13,7 +13,7 @@ at [getcomposer.org](http://getcomposer.org/doc/00-intro.md#installation-nix).
 Run
 
 ```
-$ php composer.phar require schmasterz-v/yii2-widget-ag-grid "master@dev"
+$ php composer.phar require schmasterz/yii2-widget-ag-grid "master@dev"
 ```
 
 ### Usage
