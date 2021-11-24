@@ -67,8 +67,9 @@ class AgGridWidget extends Widget
     protected function addJs()
     {
         $js = 'var columnDefs = '.Json::encode($this->gridOptions['columnDefs']).';';
+        $js .= 'var defaultColDef = '.Json::encode($this->gridOptions['defaultColDef']).';';
         $js .= 'var rowData ='.Json::encode($this->gridOptions['rowData']).';';
-        $js .= 'var gridOptions = {columnDefs: columnDefs,rowData: rowData};';
+        $js .= 'var gridOptions = {columnDefs: columnDefs, rowData: rowData, defaultColDef: defaultColDef};';
         $js.= 'var eGridDiv = document.querySelector("#'.$this->options['id'].'");';
 
         $js .= 'new agGrid.Grid(eGridDiv, gridOptions);';
